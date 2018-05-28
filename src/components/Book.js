@@ -9,7 +9,7 @@ const Book = ({ faves, toggleFave, post }) => {
     _embedded,
   } = post;
 
-  const image = _embedded['wp:featuredmedia']['0'].source_url;
+  const image = _embedded['wp:featuredmedia']['0'];
 
   // Get custom taxonomy data
   const taxonomies = _embedded['wp:term'];
@@ -22,17 +22,19 @@ const Book = ({ faves, toggleFave, post }) => {
     <div className="book">
       <Fave toggleFave={toggleFave} post={post} faves={faves} />
 
-      <img src={image} alt="" />
+      <div className="image-container">
+        <img src={image.source_url} alt={image.title.rendered} />
+      </div>
 
-      <h2>
+      <p>
         Title: <span>{title.rendered}</span>
-      </h2>
+      </p>
 
-      <h2>
+      <p>
         ISBN: <span>{isbn}</span>
-      </h2>
+      </p>
 
-      <h2>
+      <p>
         Subjects:&nbsp;
         {subjects.map((subject, i, arr) => {
           const comma = arr.length === i + 1 ? '' : ', ';
@@ -44,7 +46,7 @@ const Book = ({ faves, toggleFave, post }) => {
             </span>
           );
         })}
-      </h2>
+      </p>
     </div>
   );
 };

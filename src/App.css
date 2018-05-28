@@ -276,21 +276,30 @@ img {
 }
 
 .book {
-  flex-basis: calc(25% - 4rem);
-  width: calc(25% - 4rem);
+  flex-basis: calc(25% - 2rem);
   position: relative;
   margin-bottom: 2rem;
 }
 
-.book h2 {
-  font-size: 1rem;
+.book .image-container {
+  display: flex;
+  justify-content: center;
 }
 
-.book h2 span {
+.book .image-container img {
+  max-height: 250px;
+}
+
+.book p {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.book p span {
   font-weight: normal;
 }
 
-.book h2 a {
+.book p a {
   color: #333;
   text-decoration: none;
 }
@@ -298,12 +307,12 @@ img {
 .book button {
   color: pink;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: -5px;
+  left: -5px;
   background: transparent;
   border: none;
-  font-size: 1.5rem;
-  text-shadow: 2px 2px 0px;
+  padding: 0;
+  font-size: 2rem;
 }
 
 .book button.faved {
@@ -313,20 +322,17 @@ img {
 @media (max-width: 1000px) {
   .book {
     flex-basis: calc(33.3% - 2rem);
-    width: calc(33.3% - 2rem);
   }
 }
 
 @media (max-width: 768px) {
   .book {
     flex-basis: calc(50% - 1rem);
-    width: calc(50% - 1rem);
   }
 }
 
 @media (max-width: 480px) {
   .book {
     flex-basis: 100%;
-    width: 100%;
   }
 }
