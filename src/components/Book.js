@@ -1,10 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Fave from './Fave';
 
 const Book = ({ faves, toggleFave, post }) => {
   const {
     title,
-    id,
     acf: { isbn },
     _embedded,
   } = post;
@@ -33,7 +33,7 @@ const Book = ({ faves, toggleFave, post }) => {
       </h2>
 
       <h2>
-        Subjects:
+        Subjects:&nbsp;
         {subjects.map((subject, i, arr) => {
           const comma = arr.length === i + 1 ? '' : ', ';
 
@@ -47,6 +47,12 @@ const Book = ({ faves, toggleFave, post }) => {
       </h2>
     </div>
   );
+};
+
+Book.propTypes = {
+  faves: PropTypes.arrayOf(PropTypes.object).isRequired,
+  post: PropTypes.object.isRequired,
+  toggleFave: PropTypes.func.isRequired,
 };
 
 export default Book;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Book from './components/Book';
-import FaveList from './components/FaveList';
+import FavesList from './components/FavesList';
 
 export default class App extends Component {
   state = {
@@ -25,7 +25,7 @@ export default class App extends Component {
     this.setState({ faves: [] });
   };
 
-  componentWillMount() {
+  componentDidMount() {
     fetch('http://api-biblio.officebureau.ca/wp-json/wp/v2/posts?_embed')
       .then(response => {
         return response.json();
@@ -41,19 +41,17 @@ export default class App extends Component {
       <div className="app">
         <header className="header">Biblio</header>
 
-        <FaveList faves={faves} clearFaves={this.clearFaves} />
+        <FavesList faves={faves} clearFaves={this.clearFaves} />
 
         <div className="books">
-          {posts.map(post => {
-            return (
-              <Book
-                post={post}
-                key={post.id}
-                toggleFave={this.toggleFave}
-                faves={faves}
-              />
-            );
-          })}
+          {posts.map(post => (
+            <Book
+              post={post}
+              toggleFave={this.toggleFave}
+              faves={faves}
+              key={post.id}
+            />
+          ))}
         </div>
       </div>
     );
